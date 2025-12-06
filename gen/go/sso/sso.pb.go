@@ -225,6 +225,7 @@ type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	DeviceID      string                 `protobuf:"bytes,3,opt,name=deviceID,proto3" json:"deviceID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -269,6 +270,13 @@ func (x *LoginRequest) GetEmail() string {
 func (x *LoginRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetDeviceID() string {
+	if x != nil {
+		return x.DeviceID
 	}
 	return ""
 }
@@ -340,10 +348,11 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\"+\n" +
 	"\x10RegisterResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"@\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\\\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"U\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x1a\n" +
+	"\bdeviceID\x18\x03 \x01(\tR\bdeviceID\"U\n" +
 	"\rLoginResponse\x12 \n" +
 	"\vtokenAccess\x18\x01 \x01(\tR\vtokenAccess\x12\"\n" +
 	"\ftokenRefresh\x18\x02 \x01(\tR\ftokenRefresh2\xae\x01\n" +
