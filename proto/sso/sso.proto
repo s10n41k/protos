@@ -8,7 +8,15 @@ service Auth {
   rpc Register (RegisterRequest) returns (RegisterResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc GetAccessToken(TokenRequest)returns(TokenResponse);
+  rpc Logout(LogoutRequest)returns(LogoutResponse);
 }
+
+message LogoutRequest{
+  string accessToken = 1;
+}
+
+
+message LogoutResponse{}
 
 message TokenRequest{
   string refresh_token = 1;
