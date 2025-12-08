@@ -503,13 +503,13 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\bdeviceID\x18\x03 \x01(\tR\bdeviceID\"U\n" +
 	"\rLoginResponse\x12 \n" +
 	"\vtokenAccess\x18\x01 \x01(\tR\vtokenAccess\x12\"\n" +
-	"\ftokenRefresh\x18\x02 \x01(\tR\ftokenRefresh2\x99\x02\n" +
+	"\ftokenRefresh\x18\x02 \x01(\tR\ftokenRefresh2\xa1\x02\n" +
 	"\x04Auth\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x129\n" +
 	"\x0eGetAccessToken\x12\x12.auth.TokenRequest\x1a\x13.auth.TokenResponse\x123\n" +
-	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\x124\n" +
-	"\tLogoutAll\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponseB\x0fZ\rauth/sso; ssob\x06proto3"
+	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\x12<\n" +
+	"\tLogoutAll\x12\x16.auth.LogoutAllRequest\x1a\x17.auth.LogoutAllResponseB\x0fZ\rauth/sso; ssob\x06proto3"
 
 var (
 	file_sso_sso_proto_rawDescOnce sync.Once
@@ -541,12 +541,12 @@ var file_sso_sso_proto_depIdxs = []int32{
 	8, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
 	4, // 2: auth.Auth.GetAccessToken:input_type -> auth.TokenRequest
 	2, // 3: auth.Auth.Logout:input_type -> auth.LogoutRequest
-	8, // 4: auth.Auth.LogoutAll:input_type -> auth.LoginRequest
+	0, // 4: auth.Auth.LogoutAll:input_type -> auth.LogoutAllRequest
 	7, // 5: auth.Auth.Register:output_type -> auth.RegisterResponse
 	9, // 6: auth.Auth.Login:output_type -> auth.LoginResponse
 	5, // 7: auth.Auth.GetAccessToken:output_type -> auth.TokenResponse
 	3, // 8: auth.Auth.Logout:output_type -> auth.LogoutResponse
-	9, // 9: auth.Auth.LogoutAll:output_type -> auth.LoginResponse
+	1, // 9: auth.Auth.LogoutAll:output_type -> auth.LogoutAllResponse
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
