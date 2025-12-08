@@ -9,13 +9,13 @@ service Auth {
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc GetAccessToken(TokenRequest)returns(TokenResponse);
   rpc Logout(LogoutRequest)returns(LogoutResponse);
+  rpc LogoutAll(LoginRequest)returns(LoginResponse);
 }
 
-message LogoutRequest{
-  string accessToken = 1;
-}
+message LogoutAllRequest{}
+message LogoutAllResponse{}
 
-
+message LogoutRequest{}
 message LogoutResponse{}
 
 message TokenRequest{
