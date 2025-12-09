@@ -10,6 +10,16 @@ service Auth {
   rpc GetAccessToken(TokenRequest)returns(TokenResponse);
   rpc Logout(LogoutRequest)returns(LogoutResponse);
   rpc LogoutAll(LogoutAllRequest)returns(LogoutAllResponse);
+  rpc VerifyEmail(VerifyEmailRequest)returns(VerifyEmailResponse);
+}
+
+message VerifyEmailRequest{
+  string session = 1;
+  string code = 2;
+}
+
+message VerifyEmailResponse{
+  string user_id = 1;
 }
 
 message LogoutAllRequest{}
@@ -35,7 +45,7 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-  string user_id = 1;
+  string session = 1;
 }
 
 message LoginRequest {

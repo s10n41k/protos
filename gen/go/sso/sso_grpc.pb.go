@@ -24,6 +24,7 @@ const (
 	Auth_GetAccessToken_FullMethodName = "/auth.Auth/GetAccessToken"
 	Auth_Logout_FullMethodName         = "/auth.Auth/Logout"
 	Auth_LogoutAll_FullMethodName      = "/auth.Auth/LogoutAll"
+	Auth_VerifyEmail_FullMethodName    = "/auth.Auth/VerifyEmail"
 )
 
 // AuthClient is the client API for Auth service.
@@ -35,6 +36,7 @@ type AuthClient interface {
 	GetAccessToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	LogoutAll(ctx context.Context, in *LogoutAllRequest, opts ...grpc.CallOption) (*LogoutAllResponse, error)
+	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
 }
 
 type authClient struct {
@@ -95,6 +97,16 @@ func (c *authClient) LogoutAll(ctx context.Context, in *LogoutAllRequest, opts .
 	return out, nil
 }
 
+func (c *authClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerifyEmailResponse)
+	err := c.cc.Invoke(ctx, Auth_VerifyEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type AuthServer interface {
 	GetAccessToken(context.Context, *TokenRequest) (*TokenResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	LogoutAll(context.Context, *LogoutAllRequest) (*LogoutAllResponse, error)
+	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutR
 }
 func (UnimplementedAuthServer) LogoutAll(context.Context, *LogoutAllRequest) (*LogoutAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LogoutAll not implemented")
+}
+func (UnimplementedAuthServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -240,6 +256,24 @@ func _Auth_LogoutAll_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).VerifyEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_VerifyEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LogoutAll",
 			Handler:    _Auth_LogoutAll_Handler,
+		},
+		{
+			MethodName: "VerifyEmail",
+			Handler:    _Auth_VerifyEmail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
