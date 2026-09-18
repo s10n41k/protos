@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package billing;
+
+option go_package = "github.com/s10n41k/billing-service/proto/gen/billing";
+
+import "google/protobuf/timestamp.proto";
+
+service BillingService {
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+  rpc GetPayment(GetPaymentRequest) returns (GetPaymentResponse);
+  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
+  rpc RefundPayment(RefundPaymentRequest) returns (RefundPaymentResponse);
+  rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse);
+}
+
+message CreatePaymentRequest {
+  string user_id = 1;
+  string plan_id = 2;
+  int64 amount = 3;
+  string currency = 4;
+  string description = 5;
+  string idempotency_key = 6;
+}
+
+message CreatePaymentResponse {
+  Payment payment = 1;
+  string confirmation_url = 2;
+}
+
+message GetPaymentRequest {
+  string payment_id = 1;
+}
+
+message GetPaymentResponse {
+  Payment payment = 1;
+}
+
+message ListPaymentsRequest {
+  string user_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListPaymentsResponse {
+  repeated Payment payments = 1;
+}
+
+message RefundPaymentRequest {
+  string payment_id = 1;
+  int64 amount = 2;
+  string idempotency_key = 3;
+}
+
+message RefundPaymentResponse {
+  Payment payment = 1;
+}
+
+message GetSubscriptionRequest {
+  string user_id = 1;
+}
+
+message GetSubscriptionResponse {
+  Subscription subscription = 1;
+}
+
+message Payment {
+  string id = 1;
+  string user_id = 2;
+  string plan_id = 3;
+  int64 amount = 4;
+  string currency = 5;
+  string status = 6;
+  string provider_payment_id = 7;
+  string description = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+message Subscription {
+  string id = 1;
+  string user_id = 2;
+  string plan_id = 3;
+  string status = 4;
+  google.protobuf.Timestamp starts_at = 5;
+  google.protobuf.Timestamp expires_at = 6;
+}
