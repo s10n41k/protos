@@ -26,10 +26,7 @@ type CreatePaymentRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	UserId         string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PlanId         string                 `protobuf:"bytes,2,opt,name=plan_id,json=planId,proto3" json:"plan_id,omitempty"`
-	Amount         int64                  `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	Currency       string                 `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency,omitempty"`
-	Description    string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	IdempotencyKey string                 `protobuf:"bytes,6,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	IdempotencyKey string                 `protobuf:"bytes,3,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -74,27 +71,6 @@ func (x *CreatePaymentRequest) GetUserId() string {
 func (x *CreatePaymentRequest) GetPlanId() string {
 	if x != nil {
 		return x.PlanId
-	}
-	return ""
-}
-
-func (x *CreatePaymentRequest) GetAmount() int64 {
-	if x != nil {
-		return x.Amount
-	}
-	return 0
-}
-
-func (x *CreatePaymentRequest) GetCurrency() string {
-	if x != nil {
-		return x.Currency
-	}
-	return ""
-}
-
-func (x *CreatePaymentRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
 	}
 	return ""
 }
@@ -746,14 +722,11 @@ var File_billing_billing_proto protoreflect.FileDescriptor
 
 const file_billing_billing_proto_rawDesc = "" +
 	"\n" +
-	"\x15billing/billing.proto\x12\abilling\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc7\x01\n" +
+	"\x15billing/billing.proto\x12\abilling\x1a\x1fgoogle/protobuf/timestamp.proto\"q\n" +
 	"\x14CreatePaymentRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\aplan_id\x18\x02 \x01(\tR\x06planId\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12\x1a\n" +
-	"\bcurrency\x18\x04 \x01(\tR\bcurrency\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12'\n" +
-	"\x0fidempotency_key\x18\x06 \x01(\tR\x0eidempotencyKey\"n\n" +
+	"\aplan_id\x18\x02 \x01(\tR\x06planId\x12'\n" +
+	"\x0fidempotency_key\x18\x03 \x01(\tR\x0eidempotencyKey\"n\n" +
 	"\x15CreatePaymentResponse\x12*\n" +
 	"\apayment\x18\x01 \x01(\v2\x10.billing.PaymentR\apayment\x12)\n" +
 	"\x10confirmation_url\x18\x02 \x01(\tR\x0fconfirmationUrl\"2\n" +
@@ -800,8 +773,8 @@ const file_billing_billing_proto_rawDesc = "" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x127\n" +
 	"\tstarts_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x129\n" +
 	"\n" +
-	"expires_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt2\x9a\x03\n" +
-	"\x0eBillingService\x12N\n" +
+	"expires_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt2\x93\x03\n" +
+	"\aBilling\x12N\n" +
 	"\rCreatePayment\x12\x1d.billing.CreatePaymentRequest\x1a\x1e.billing.CreatePaymentResponse\x12E\n" +
 	"\n" +
 	"GetPayment\x12\x1a.billing.GetPaymentRequest\x1a\x1b.billing.GetPaymentResponse\x12K\n" +
@@ -847,16 +820,16 @@ var file_billing_billing_proto_depIdxs = []int32{
 	12, // 6: billing.Payment.updated_at:type_name -> google.protobuf.Timestamp
 	12, // 7: billing.Subscription.starts_at:type_name -> google.protobuf.Timestamp
 	12, // 8: billing.Subscription.expires_at:type_name -> google.protobuf.Timestamp
-	0,  // 9: billing.BillingService.CreatePayment:input_type -> billing.CreatePaymentRequest
-	2,  // 10: billing.BillingService.GetPayment:input_type -> billing.GetPaymentRequest
-	4,  // 11: billing.BillingService.ListPayments:input_type -> billing.ListPaymentsRequest
-	6,  // 12: billing.BillingService.RefundPayment:input_type -> billing.RefundPaymentRequest
-	8,  // 13: billing.BillingService.GetSubscription:input_type -> billing.GetSubscriptionRequest
-	1,  // 14: billing.BillingService.CreatePayment:output_type -> billing.CreatePaymentResponse
-	3,  // 15: billing.BillingService.GetPayment:output_type -> billing.GetPaymentResponse
-	5,  // 16: billing.BillingService.ListPayments:output_type -> billing.ListPaymentsResponse
-	7,  // 17: billing.BillingService.RefundPayment:output_type -> billing.RefundPaymentResponse
-	9,  // 18: billing.BillingService.GetSubscription:output_type -> billing.GetSubscriptionResponse
+	0,  // 9: billing.Billing.CreatePayment:input_type -> billing.CreatePaymentRequest
+	2,  // 10: billing.Billing.GetPayment:input_type -> billing.GetPaymentRequest
+	4,  // 11: billing.Billing.ListPayments:input_type -> billing.ListPaymentsRequest
+	6,  // 12: billing.Billing.RefundPayment:input_type -> billing.RefundPaymentRequest
+	8,  // 13: billing.Billing.GetSubscription:input_type -> billing.GetSubscriptionRequest
+	1,  // 14: billing.Billing.CreatePayment:output_type -> billing.CreatePaymentResponse
+	3,  // 15: billing.Billing.GetPayment:output_type -> billing.GetPaymentResponse
+	5,  // 16: billing.Billing.ListPayments:output_type -> billing.ListPaymentsResponse
+	7,  // 17: billing.Billing.RefundPayment:output_type -> billing.RefundPaymentResponse
+	9,  // 18: billing.Billing.GetSubscription:output_type -> billing.GetSubscriptionResponse
 	14, // [14:19] is the sub-list for method output_type
 	9,  // [9:14] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name

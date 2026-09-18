@@ -6,7 +6,7 @@ option go_package = "github.com/s10n41k/billing-service/proto/gen/billing";
 
 import "google/protobuf/timestamp.proto";
 
-service BillingService {
+service Billing {
   rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
   rpc GetPayment(GetPaymentRequest) returns (GetPaymentResponse);
   rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
@@ -17,10 +17,7 @@ service BillingService {
 message CreatePaymentRequest {
   string user_id = 1;
   string plan_id = 2;
-  int64 amount = 3;
-  string currency = 4;
-  string description = 5;
-  string idempotency_key = 6;
+  string idempotency_key = 3;
 }
 
 message CreatePaymentResponse {

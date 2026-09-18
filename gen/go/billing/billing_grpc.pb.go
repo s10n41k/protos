@@ -19,17 +19,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BillingService_CreatePayment_FullMethodName   = "/billing.BillingService/CreatePayment"
-	BillingService_GetPayment_FullMethodName      = "/billing.BillingService/GetPayment"
-	BillingService_ListPayments_FullMethodName    = "/billing.BillingService/ListPayments"
-	BillingService_RefundPayment_FullMethodName   = "/billing.BillingService/RefundPayment"
-	BillingService_GetSubscription_FullMethodName = "/billing.BillingService/GetSubscription"
+	Billing_CreatePayment_FullMethodName   = "/billing.Billing/CreatePayment"
+	Billing_GetPayment_FullMethodName      = "/billing.Billing/GetPayment"
+	Billing_ListPayments_FullMethodName    = "/billing.Billing/ListPayments"
+	Billing_RefundPayment_FullMethodName   = "/billing.Billing/RefundPayment"
+	Billing_GetSubscription_FullMethodName = "/billing.Billing/GetSubscription"
 )
 
-// BillingServiceClient is the client API for BillingService service.
+// BillingClient is the client API for Billing service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type BillingServiceClient interface {
+type BillingClient interface {
 	CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error)
 	GetPayment(ctx context.Context, in *GetPaymentRequest, opts ...grpc.CallOption) (*GetPaymentResponse, error)
 	ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error)
@@ -37,235 +37,235 @@ type BillingServiceClient interface {
 	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...grpc.CallOption) (*GetSubscriptionResponse, error)
 }
 
-type billingServiceClient struct {
+type billingClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewBillingServiceClient(cc grpc.ClientConnInterface) BillingServiceClient {
-	return &billingServiceClient{cc}
+func NewBillingClient(cc grpc.ClientConnInterface) BillingClient {
+	return &billingClient{cc}
 }
 
-func (c *billingServiceClient) CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error) {
+func (c *billingClient) CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreatePaymentResponse)
-	err := c.cc.Invoke(ctx, BillingService_CreatePayment_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Billing_CreatePayment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *billingServiceClient) GetPayment(ctx context.Context, in *GetPaymentRequest, opts ...grpc.CallOption) (*GetPaymentResponse, error) {
+func (c *billingClient) GetPayment(ctx context.Context, in *GetPaymentRequest, opts ...grpc.CallOption) (*GetPaymentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPaymentResponse)
-	err := c.cc.Invoke(ctx, BillingService_GetPayment_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Billing_GetPayment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *billingServiceClient) ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error) {
+func (c *billingClient) ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPaymentsResponse)
-	err := c.cc.Invoke(ctx, BillingService_ListPayments_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Billing_ListPayments_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *billingServiceClient) RefundPayment(ctx context.Context, in *RefundPaymentRequest, opts ...grpc.CallOption) (*RefundPaymentResponse, error) {
+func (c *billingClient) RefundPayment(ctx context.Context, in *RefundPaymentRequest, opts ...grpc.CallOption) (*RefundPaymentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RefundPaymentResponse)
-	err := c.cc.Invoke(ctx, BillingService_RefundPayment_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Billing_RefundPayment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *billingServiceClient) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...grpc.CallOption) (*GetSubscriptionResponse, error) {
+func (c *billingClient) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...grpc.CallOption) (*GetSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSubscriptionResponse)
-	err := c.cc.Invoke(ctx, BillingService_GetSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Billing_GetSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// BillingServiceServer is the server API for BillingService service.
-// All implementations must embed UnimplementedBillingServiceServer
+// BillingServer is the server API for Billing service.
+// All implementations must embed UnimplementedBillingServer
 // for forward compatibility.
-type BillingServiceServer interface {
+type BillingServer interface {
 	CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error)
 	GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error)
 	ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error)
 	RefundPayment(context.Context, *RefundPaymentRequest) (*RefundPaymentResponse, error)
 	GetSubscription(context.Context, *GetSubscriptionRequest) (*GetSubscriptionResponse, error)
-	mustEmbedUnimplementedBillingServiceServer()
+	mustEmbedUnimplementedBillingServer()
 }
 
-// UnimplementedBillingServiceServer must be embedded to have
+// UnimplementedBillingServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedBillingServiceServer struct{}
+type UnimplementedBillingServer struct{}
 
-func (UnimplementedBillingServiceServer) CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error) {
+func (UnimplementedBillingServer) CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePayment not implemented")
 }
-func (UnimplementedBillingServiceServer) GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error) {
+func (UnimplementedBillingServer) GetPayment(context.Context, *GetPaymentRequest) (*GetPaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPayment not implemented")
 }
-func (UnimplementedBillingServiceServer) ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error) {
+func (UnimplementedBillingServer) ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPayments not implemented")
 }
-func (UnimplementedBillingServiceServer) RefundPayment(context.Context, *RefundPaymentRequest) (*RefundPaymentResponse, error) {
+func (UnimplementedBillingServer) RefundPayment(context.Context, *RefundPaymentRequest) (*RefundPaymentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefundPayment not implemented")
 }
-func (UnimplementedBillingServiceServer) GetSubscription(context.Context, *GetSubscriptionRequest) (*GetSubscriptionResponse, error) {
+func (UnimplementedBillingServer) GetSubscription(context.Context, *GetSubscriptionRequest) (*GetSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSubscription not implemented")
 }
-func (UnimplementedBillingServiceServer) mustEmbedUnimplementedBillingServiceServer() {}
-func (UnimplementedBillingServiceServer) testEmbeddedByValue()                        {}
+func (UnimplementedBillingServer) mustEmbedUnimplementedBillingServer() {}
+func (UnimplementedBillingServer) testEmbeddedByValue()                 {}
 
-// UnsafeBillingServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to BillingServiceServer will
+// UnsafeBillingServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to BillingServer will
 // result in compilation errors.
-type UnsafeBillingServiceServer interface {
-	mustEmbedUnimplementedBillingServiceServer()
+type UnsafeBillingServer interface {
+	mustEmbedUnimplementedBillingServer()
 }
 
-func RegisterBillingServiceServer(s grpc.ServiceRegistrar, srv BillingServiceServer) {
-	// If the following call pancis, it indicates UnimplementedBillingServiceServer was
+func RegisterBillingServer(s grpc.ServiceRegistrar, srv BillingServer) {
+	// If the following call pancis, it indicates UnimplementedBillingServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&BillingService_ServiceDesc, srv)
+	s.RegisterService(&Billing_ServiceDesc, srv)
 }
 
-func _BillingService_CreatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Billing_CreatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatePaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingServiceServer).CreatePayment(ctx, in)
+		return srv.(BillingServer).CreatePayment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingService_CreatePayment_FullMethodName,
+		FullMethod: Billing_CreatePayment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingServiceServer).CreatePayment(ctx, req.(*CreatePaymentRequest))
+		return srv.(BillingServer).CreatePayment(ctx, req.(*CreatePaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BillingService_GetPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Billing_GetPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingServiceServer).GetPayment(ctx, in)
+		return srv.(BillingServer).GetPayment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingService_GetPayment_FullMethodName,
+		FullMethod: Billing_GetPayment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingServiceServer).GetPayment(ctx, req.(*GetPaymentRequest))
+		return srv.(BillingServer).GetPayment(ctx, req.(*GetPaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BillingService_ListPayments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Billing_ListPayments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPaymentsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingServiceServer).ListPayments(ctx, in)
+		return srv.(BillingServer).ListPayments(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingService_ListPayments_FullMethodName,
+		FullMethod: Billing_ListPayments_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingServiceServer).ListPayments(ctx, req.(*ListPaymentsRequest))
+		return srv.(BillingServer).ListPayments(ctx, req.(*ListPaymentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BillingService_RefundPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Billing_RefundPayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RefundPaymentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingServiceServer).RefundPayment(ctx, in)
+		return srv.(BillingServer).RefundPayment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingService_RefundPayment_FullMethodName,
+		FullMethod: Billing_RefundPayment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingServiceServer).RefundPayment(ctx, req.(*RefundPaymentRequest))
+		return srv.(BillingServer).RefundPayment(ctx, req.(*RefundPaymentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BillingService_GetSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Billing_GetSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingServiceServer).GetSubscription(ctx, in)
+		return srv.(BillingServer).GetSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingService_GetSubscription_FullMethodName,
+		FullMethod: Billing_GetSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingServiceServer).GetSubscription(ctx, req.(*GetSubscriptionRequest))
+		return srv.(BillingServer).GetSubscription(ctx, req.(*GetSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// BillingService_ServiceDesc is the grpc.ServiceDesc for BillingService service.
+// Billing_ServiceDesc is the grpc.ServiceDesc for Billing service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var BillingService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "billing.BillingService",
-	HandlerType: (*BillingServiceServer)(nil),
+var Billing_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "billing.Billing",
+	HandlerType: (*BillingServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreatePayment",
-			Handler:    _BillingService_CreatePayment_Handler,
+			Handler:    _Billing_CreatePayment_Handler,
 		},
 		{
 			MethodName: "GetPayment",
-			Handler:    _BillingService_GetPayment_Handler,
+			Handler:    _Billing_GetPayment_Handler,
 		},
 		{
 			MethodName: "ListPayments",
-			Handler:    _BillingService_ListPayments_Handler,
+			Handler:    _Billing_ListPayments_Handler,
 		},
 		{
 			MethodName: "RefundPayment",
-			Handler:    _BillingService_RefundPayment_Handler,
+			Handler:    _Billing_RefundPayment_Handler,
 		},
 		{
 			MethodName: "GetSubscription",
-			Handler:    _BillingService_GetSubscription_Handler,
+			Handler:    _Billing_GetSubscription_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
