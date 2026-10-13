@@ -27,6 +27,7 @@ type CreatePaymentRequest struct {
 	UserId         string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PlanId         string                 `protobuf:"bytes,2,opt,name=plan_id,json=planId,proto3" json:"plan_id,omitempty"`
 	IdempotencyKey string                 `protobuf:"bytes,3,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	Currency       string                 `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -78,6 +79,13 @@ func (x *CreatePaymentRequest) GetPlanId() string {
 func (x *CreatePaymentRequest) GetIdempotencyKey() string {
 	if x != nil {
 		return x.IdempotencyKey
+	}
+	return ""
+}
+
+func (x *CreatePaymentRequest) GetCurrency() string {
+	if x != nil {
+		return x.Currency
 	}
 	return ""
 }
@@ -722,11 +730,12 @@ var File_billing_billing_proto protoreflect.FileDescriptor
 
 const file_billing_billing_proto_rawDesc = "" +
 	"\n" +
-	"\x15billing/billing.proto\x12\abilling\x1a\x1fgoogle/protobuf/timestamp.proto\"q\n" +
+	"\x15billing/billing.proto\x12\abilling\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8d\x01\n" +
 	"\x14CreatePaymentRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\aplan_id\x18\x02 \x01(\tR\x06planId\x12'\n" +
-	"\x0fidempotency_key\x18\x03 \x01(\tR\x0eidempotencyKey\"n\n" +
+	"\x0fidempotency_key\x18\x03 \x01(\tR\x0eidempotencyKey\x12\x1a\n" +
+	"\bcurrency\x18\x04 \x01(\tR\bcurrency\"n\n" +
 	"\x15CreatePaymentResponse\x12*\n" +
 	"\apayment\x18\x01 \x01(\v2\x10.billing.PaymentR\apayment\x12)\n" +
 	"\x10confirmation_url\x18\x02 \x01(\tR\x0fconfirmationUrl\"2\n" +

@@ -18,6 +18,7 @@ message CreatePaymentRequest {
   string user_id = 1;
   string plan_id = 2;
   string idempotency_key = 3;
+  string currency = 4;
 }
 
 message CreatePaymentResponse {
